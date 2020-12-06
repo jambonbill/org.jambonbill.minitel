@@ -1,0 +1,6 @@
+/composer.lock
+
+# Vendor folder
+vendor/
+
+profiles/*.json
