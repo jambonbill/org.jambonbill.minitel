@@ -6,27 +6,20 @@
         {
             "name": "Jambonbill",
             "email": "jambonbill@gmail.com",
-            "homepage": "http://www.jambonbill.org"
-        }
-    ],
-
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@github.com:jambonbill/djang.git"
+            "homepage": "https://www.jambonbill.org"
         }
     ],
 
     "autoload": {
         "psr-0": {
-            "MT": "src/"
+            "Minitel": "src/"
         }
     },
 
     "require": {
     	"php": ">=7.0.0",
         "ext-pdo":"*",
-        "jambonbill/lteturbo": ">=1.0",
+        "jambonbill/lteturbo": ">=1.5.0",
         "jambonbill/djang": ">=1.1.2"
     }
 }
