@@ -23,7 +23,7 @@ echo $admin;//
 
 	<section class="container">
 	  <h3>Minitel Pages
-		<button class="btn btn-sm btn-primary" title="New script" id="btnNewScript"><i class="fa fa-plus-circle"></i> New (F2)</button>
+		<button class="btn btn-sm btn-primary" title="New" id="btnNew"><i class="fa fa-plus-circle"></i> New (F2)</button>
 	  </h3>
 	</setion>
 
@@ -51,6 +51,5 @@ echo $admin;//
 <?php
 //require "modal_script.php";
 //require "modal_rename.php";//rename script
-//require "modal_new_script.php";
-//$P->end();
+require "modal_new_page.php";
 $admin->end();
