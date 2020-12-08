@@ -7,6 +7,7 @@ namespace Minitel;
 
 use PDO;
 use Exception;
+use Djang\Base;
 
 /**
  * Minitel page (vdt)
@@ -17,7 +18,7 @@ class Page
 	private $_user;
     private $_DEBUG=false;
 
-	public function __construct (\Djang\Base $Base)
+	public function __construct (Base $Base)
     {
         $this->_Base=$Base;
     }

@@ -39,8 +39,9 @@ class Script
      */
     public function list()
     {
-    	$sql="SELECT id, name FROM minitel.script WHERE id>0;";
-    	$q=$this->db()->query($sql) or die("Error:$sql");
+    	$sql="SELECT id, name FROM `minitel`.`script` WHERE id>0;";
+    	$q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
+
         $dat=[];
         while($r=$q->fetch(PDO::FETCH_ASSOC)){
             $dat[]=$r;
@@ -58,9 +59,9 @@ class Script
     public function create(string $name, string $b64data)
     {
     	$sql ="INSERT INTO minitel.script (name, data, created_at, created_by) ";
-    	$sql.="VALUES (".$this->db()->quote($name).", ".$this->db()->quote($data).", NOW(), 19);";
+    	$sql.="VALUES (".$this->db()->quote($name).", ".$this->db()->quote($b64data).", NOW(), 19);";
 
-        $q=$this->db()->query($sql) or die("Error:$sql");
+        $q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
     	$id=$this->db()->lastInsertId();
 
         if (!$id) {
