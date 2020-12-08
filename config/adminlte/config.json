@@ -1,0 +1,25 @@
+{
+	"title":"Minitel",
+	"homeurl":"index.php",
+	"favicon":"/dist/img/favicon.ico",
+
+	"meta":[
+		{
+			"name":"description",
+			"content":"Minitel"
+		},{
+			"property":"og:image",
+			"content":""
+		},{
+			"name":"twitter:title",
+			"content":"Minitel"
+		},{
+			"name":"keywords",
+			"content":"Minitel"
+		}
+	],
+
+	"assets":"assets.json",
+	"menu":"menu.json",
+	"navbar":"navbar.json"
+}
