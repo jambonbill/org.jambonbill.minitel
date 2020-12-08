@@ -23,6 +23,10 @@ switch($_POST['do']){
         $dat['scripts']=$Script->list();
         exit(json_encode($dat));
 
+    case 'create':
+	    $dat['created']=$Script->create($_POST['name'], '');
+		exit(json_encode($dat));
+
     default:
         $dat['error']='do what?';
         exit(json_encode($dat));

@@ -23,7 +23,7 @@ echo $admin;//
 
 	<section class="container">
 	  <h3>Minitel Scripts
-		<button class="btn btn-sm btn-primary" title="New script" id="btnNewScript"><i class="fa fa-plus-circle"></i> New (F2)</button>
+		<button class="btn btn-sm btn-primary" title="New script" id="btnNew"><i class="fa fa-plus-circle"></i> New (F2)</button>
 	  </h3>
 	</setion>
 

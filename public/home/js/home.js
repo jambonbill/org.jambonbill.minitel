@@ -29,14 +29,15 @@ $(function(){
 	function display(){
 
 	    console.info('display');
-	    let dat=dat;
+	    let dat=scripts;
 	    let str=$('#search').val();
 	    let num=0;
 	    let htm='<table class="table table-sm table-hover" style="cursor:pointer">';
 
 	    htm+='<thead>';
-	    htm+='<th>#</th>';
+	    htm+='<th width=30>#</th>';
 	    htm+='<th>Name</th>';
+	    htm+='<th>Size</th>';
 	    htm+='</thead>';
 
 	    htm+='<tbody>';
@@ -49,7 +50,9 @@ $(function(){
 	        }
 	        console.log(o);
 	        htm+='<tr data-id="'+o.id+'">';
-	        htm+='<td>'+o;
+	        htm+='<td><i class="text-muted">'+o.id+'</i>';
+	        htm+='<td>'+o.name;
+	        htm+='<td>xxx';
 	        num++;
 	    }
 	    htm+='</tbody>';
@@ -74,21 +77,34 @@ $(function(){
 
 
 
-	function popNew(id){
-	    console.info('popNew',id);
-	    let o=dat.find((d)=>d.id==id);
-	    if(!o){
-	        console.error('not found');
-	        return;
-	    }
-	    console.log(o);
-	    $('#modalNew').modal('show');
-	    $('#modalNew .modal-title').text('xxx');
-	    $('#x').focus();
+	function popNew(){
+	    console.info('popNew');
+	    $('#modalNewScript').modal('show');
+	    $('#modalNewScript .modal-title').text('New script');
+	    $('#new_name').focus();
 	    $('button#btnUpdate').attr('disabled',false);
 	}
 
 	//Pop New F2
 	$('#btnNew').click(()=>popNew());
+
+	$('#btnCreateNewScript').click(()=>{
+
+		let p={
+		    do:'create',
+		    name:$('#new_name').val()
+		};
+
+		$('.overlay').show();
+		$.post('ctrl.php', p, (json)=>{
+			$('.overlay').hide();
+			console.log(json);
+		}).fail((e)=>{
+			alert(e.responseText);
+			console.error(e.responseText);
+		}).always(()=>{
+			$('.overlay').hide();
+		});
+	});
 
 });
