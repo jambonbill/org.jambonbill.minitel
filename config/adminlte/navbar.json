@@ -3,10 +3,6 @@
         "text":"",
         "icon":"fas fa-search",
         "url":"search"
-      },{
-        "text":"Functions ref.",
-        "icon":"fas fa-book",
-        "url":"functions"
       }
     ],
 
