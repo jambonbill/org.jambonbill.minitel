@@ -32,7 +32,7 @@ echo $admin;//
 	<div class="row">
 		<div class="col-md-3">
 		<?php
-		require "box_search.php";
+		//require "box_search.php";
 		?>
 		</div>
 
@@ -49,7 +49,7 @@ echo $admin;//
 <script type="text/javascript" src="js/home.js"></script>
 
 <?php
-//require "modal_script.php";
+require "modal_script.php";
 //require "modal_rename.php";//rename script
 require "modal_new_script.php";
 //$P->end();

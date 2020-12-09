@@ -71,8 +71,22 @@ $(function(){
 	        $(this).addClass('bg-primary');
 	    	//$('.overlay').show();
 	        console.log($(this).data('id'));
-	        //document.location.href='';
+	        popScript($(this).data('id'));
 	    });
+	}
+
+	function popScript(id){
+	    console.info('popScript',id);
+	    let o=scripts.find((d)=>d.id==id);
+	    if(!o){
+	        console.error('not found');
+	        return;
+	    }
+	    console.log(o);
+	    $('#modalScript').modal('show');
+	    $('#modalScript .modal-title').text('xxx');
+	    //$('#x').focus();
+	    //$('button#btnUpdate').attr('disabled',false);
 	}
 
 
