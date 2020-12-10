@@ -56,10 +56,14 @@ class Script
      * @param  string $b64data [description]
      * @return [type]          [description]
      */
-    public function create(string $name, string $b64data)
+    public function create(string $name, string $data)
     {
+        if(!$name){
+            throw new Exception("Error Processing script name", 1);
+        }
+
     	$sql ="INSERT INTO minitel.script (name, data, created_at, created_by) ";
-    	$sql.="VALUES (".$this->db()->quote($name).", ".$this->db()->quote($b64data).", NOW(), 19);";
+    	$sql.="VALUES (".$this->db()->quote($name).", ".$this->db()->quote($data).", NOW(), ".$this->_uid().");";
 
         $q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
     	$id=$this->db()->lastInsertId();
@@ -93,6 +97,7 @@ class Script
 
     	$sql="UPDATE minitel.script SET id=-id WHERE id=$id LIMIT 1;";
     	$q=$this->db()->query($sql) or die("Error:$sql");
+        return $id;
     }
 
 }
