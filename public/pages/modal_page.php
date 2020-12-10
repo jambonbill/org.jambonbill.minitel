@@ -9,7 +9,7 @@ $htm.='<div class="col-12">';
 $htm.='<div class="form-group">';
 
 $htm.='<x-minitel data-speed="1200" data-color="true">';
-  $htm.='<canvas class="minitel-screen" id=screen data-minitel="screen"></canvas>';
+  $htm.='<canvas class="minitel-screen" id=screen data-minitel="screen" style="width:640px"></canvas>';
 $htm.='</x-minitel>';
 
 $htm.='</div>';

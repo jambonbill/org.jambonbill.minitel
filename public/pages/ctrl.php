@@ -18,7 +18,6 @@ $dat=[];
 $dat['POST']=$_POST;
 switch($_POST['do']){
 
-    case 'get':
     case 'list':
         $dat['pages']=$Page->list();
         exit(json_encode($dat));
@@ -31,6 +30,12 @@ switch($_POST['do']){
 	    $dat['deleted']=$Page->delete($_POST['id']);
         exit(json_encode($dat));
 
+    case 'get':
+        $r=$Page->get($_POST['id']);
+        $r['b64']=base64_encode($r['data']);
+        unset($r['data']);
+        $dat['data']=$r;
+        exit(json_encode($dat));
 
     default:
         $dat['error']='do what?';

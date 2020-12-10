@@ -15,7 +15,7 @@ $htm.='</div>';
 
 $htm.='<div class="col-12">';
 $htm.='<div class="form-group">';
-$htm.='<label for="ps_name" class="control-label">Script</label>';
+$htm.='<label for="new_name" class="control-label">Script</label>';
 $htm.='<input type=text class="form-control form-control-sm" id="new_name" placeholder="Script name" autocomplete=off>';
 $htm.='</div>';
 $htm.='</div>';

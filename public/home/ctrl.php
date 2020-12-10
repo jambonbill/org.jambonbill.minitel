@@ -27,6 +27,10 @@ switch($_POST['do']){
 	    $dat['created']=$Script->create($_POST['name'], '');
 		exit(json_encode($dat));
 
+    case 'delete':
+        $dat['deleted']=$Script->delete($_POST['id']);
+        exit(json_encode($dat));
+
     default:
         $dat['error']='do what?';
         exit(json_encode($dat));

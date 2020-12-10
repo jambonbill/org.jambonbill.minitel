@@ -3,6 +3,8 @@ $(function(){
 
 	const emulator = Minitel.startEmulators()[0];
 
+	window.emul=()=>emulator;
+
 	let pages=[];
 
 	function get(){
@@ -10,7 +12,7 @@ $(function(){
 	    console.info('get');
 
 	    let p={
-	    	do:'get'
+	    	do:'list'
 	    };
 
 	    $('.overlay').show();
@@ -92,10 +94,34 @@ $(function(){
 	    }
 	    console.log(o);
 	    $('#modalPage').modal('show');
-	    $('#modalPage .modal-title').text('Page #'+o.id);
+	    $('#modalPage .modal-title').text(o.name);
 	    $('#page_id').val(o.id);
 	    $('button#btnUpdate').attr('disabled',false);
+
+	    $('.overlay').show();
+		$.post('ctrl.php', {'do':'get',id:o.id}, (json)=>{
+			$('.overlay').hide();
+			//console.log('load',json.data.b64);
+
+			let data=atob(json.data.b64);
+			console.log(data);
+			//emulator.send(data);
+			for(let i in data){
+				let chr=data[i];
+				emulator.send(chr.charCodeAt());
+			}
+
+		}).fail((e)=>{
+			alert(e.responseText);
+			console.error(e.responseText);
+		}).always(()=>{
+			$('.overlay').hide();
+		});
 	}
+
+
+
+
 
 	$('#btnNew').click(function(){
 		popNew();

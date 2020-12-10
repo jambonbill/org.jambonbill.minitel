@@ -3,6 +3,9 @@ $(function(){
 
 	let scripts=[];
 
+	const emulator = Minitel.startEmulators()[0];
+
+
 	function get(){
 
 	    console.info('get');
@@ -37,7 +40,7 @@ $(function(){
 	    htm+='<thead>';
 	    htm+='<th width=30>#</th>';
 	    htm+='<th>Name</th>';
-	    htm+='<th>Size</th>';
+	    htm+='<th class="text-right">Size</th>';
 	    htm+='</thead>';
 
 	    htm+='<tbody>';
@@ -52,14 +55,15 @@ $(function(){
 	        htm+='<tr data-id="'+o.id+'">';
 	        htm+='<td><i class="text-muted">'+o.id+'</i>';
 	        htm+='<td>'+o.name;
-	        htm+='<td>xxx';
+	        htm+='<td class="text-right">';
+	        htm+='<i class="text-muted">0</i>';
 	        num++;
 	    }
 	    htm+='</tbody>';
 	    htm+='</table>';
 
 	    if (num>0) {
-	        htm+='<i class="text-muted">'+num+' record(s)</i>';
+	        //htm+='<i class="text-muted">'+num+' record(s)</i>';
 	    } else {
 	        htm='<div class="p-4"><div class="alert alert-secondary" role="alert">no data</div></div>';
 	    }
@@ -84,9 +88,9 @@ $(function(){
 	    }
 	    console.log(o);
 	    $('#modalScript').modal('show');
-	    $('#modalScript .modal-title').text('xxx');
-	    //$('#x').focus();
-	    //$('button#btnUpdate').attr('disabled',false);
+	    $('#modalScript .modal-title').text(o.name);
+	    $('#script_id').val(o.id);
+	    $('button#btnEdit').focus();
 	}
 
 
@@ -113,6 +117,9 @@ $(function(){
 		$.post('ctrl.php', p, (json)=>{
 			$('.overlay').hide();
 			console.log(json);
+			if (json.created) {
+				document.location.reload();//brutal
+			}
 		}).fail((e)=>{
 			alert(e.responseText);
 			console.error(e.responseText);
@@ -120,5 +127,34 @@ $(function(){
 			$('.overlay').hide();
 		});
 	});
+
+	$('#btnEdit').click(()=>{});
+
+	$('#btnDelete').click(()=>{
+		let id=$('#script_id').val();
+
+		if(!confirm("Confirm delete script #"+id+" ?"))return;
+
+		let p={
+		    do:'delete',
+		    id:id
+		};
+
+		$('.overlay').show();
+		$('#modalScript .modal-title').text('Please wait');
+		$.post('ctrl.php', p, (json)=>{
+			$('.overlay').hide();
+			console.log(json);
+			if(json.deleted){
+				$('#modalNewScript').modal('hide');
+			}
+		}).fail((e)=>{
+			alert(e.responseText);
+			console.error(e.responseText);
+		}).always(()=>{
+			$('.overlay').hide();
+		});
+	});
+
 
 });

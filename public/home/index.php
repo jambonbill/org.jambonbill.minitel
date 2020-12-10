@@ -47,10 +47,10 @@ echo $admin;//
 </div>
 
 <script type="text/javascript" src="js/home.js"></script>
+<script type="text/javascript" src="/js/minitel.min.js"></script>
 
 <?php
 require "modal_script.php";
 //require "modal_rename.php";//rename script
 require "modal_new_script.php";
-//$P->end();
 $admin->end();
