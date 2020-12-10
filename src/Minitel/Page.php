@@ -35,6 +35,15 @@ class Page
     }
 
 
+    public function get(int $id)
+    {
+        $sql="SELECT * FROM `minitel`.`page` WHERE id>0 AND id=$id LIMIT 1;";
+        $q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
+        $r=$q->fetch(PDO::FETCH_ASSOC);
+        return $r;
+    }
+
+
     /**
      * Return list of pages
      * @return [type] [description]
