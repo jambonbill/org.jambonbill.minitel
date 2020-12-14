@@ -33,6 +33,24 @@ class Script
     }
 
 
+
+
+    /**
+     * Return one script record
+     * @param  int    $id [description]
+     * @return [type]     [description]
+     */
+    public function get(int $id)
+    {
+        $sql="SELECT * FROM `minitel`.`script` WHERE id=$id LIMIT 1;";
+        $q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
+
+        $r=$q->fetch(PDO::FETCH_ASSOC);
+        return $r;
+
+    }
+
+
     /**
      * Return list of scripts
      * @return [type] [description]
@@ -62,7 +80,7 @@ class Script
             throw new Exception("Error Processing script name", 1);
         }
 
-    	$sql ="INSERT INTO minitel.script (name, data, created_at, created_by) ";
+    	$sql ="INSERT INTO `minitel`.script (name, data, created_at, created_by) ";
     	$sql.="VALUES (".$this->db()->quote($name).", ".$this->db()->quote($data).", NOW(), ".$this->_uid().");";
 
         $q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
@@ -76,12 +94,25 @@ class Script
     }
 
 
-    public function update(int $id, string $name, string $data)
+    /**
+     * array data is typically '_POST'
+     * @param  int    $id   [description]
+     * @param  array  $data [description]
+     * @return [type]       [description]
+     */
+    public function update(int $id, array $data)
     {
     	if (!$id) {
     		throw new Exception("Error Processing Request", 1);
     	}
 
+        $sql ="UPDATE `minitel`.script SET updated_at=NOW() ";
+        $sql.=", data=".$this->db()->quote($data['data']);
+        $sql.=" WHERE id=$id LIMIT 1;";
+
+        $q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
+
+        return $id;
     }
 
     /**
