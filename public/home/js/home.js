@@ -128,7 +128,9 @@ $(function(){
 		});
 	});
 
-	$('#btnEdit').click(()=>{});
+	$('#btnEdit').click(()=>{
+		document.location.href='/edit/'+$('#script_id').val();
+	});
 
 	$('#btnDelete').click(()=>{
 		let id=$('#script_id').val();
@@ -146,7 +148,8 @@ $(function(){
 			$('.overlay').hide();
 			console.log(json);
 			if(json.deleted){
-				$('#modalNewScript').modal('hide');
+				$('#modalScript').modal('hide');
+				get();
 			}
 		}).fail((e)=>{
 			alert(e.responseText);
