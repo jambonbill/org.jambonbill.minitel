@@ -1,0 +1,13 @@
+DirectoryIndex index.php index.html index.htm
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^([a-z0-9]+)$ index.php?id=$1 [QSA,L]
+</IfModule>
+
+Options -Indexes
+Options +FollowSymlinks
+
+<Files .htaccess>
+deny from all
+</Files>
