@@ -1,7 +1,7 @@
-$(function(){
+$(()=>{
 	"use strict";
 
-	const emulator = Minitel.startEmulators()[0];
+	let emulator = Minitel.startEmulators()[0];
 
 	window.emul=()=>emulator;
 
@@ -41,6 +41,7 @@ $(function(){
 	    htm+='<thead>';
 	    htm+='<th width=30>#</th>';
 	    htm+='<th>Page name</th>';
+	    htm+='<th class="text-right">Size</th>';
 	    htm+='</thead>';
 
 	    htm+='<tbody>';
@@ -55,6 +56,7 @@ $(function(){
 	        htm+='<tr data-id="'+o.id+'">';
 	        htm+='<td><i class="text-muted">'+o.id;
 	        htm+='<td>'+o.name;
+	        htm+='<td class="text-right"><i class="text-muted">'+o.size+'</i>';
 	        num++;
 	    }
 	    htm+='</tbody>';
@@ -88,27 +90,30 @@ $(function(){
 	function popPage(id){
 	    console.info('popPage',id);
 	    let o=pages.find((d)=>d.id==id);
-	    if(!o){
+
+	    if (!o) {
 	        console.error('not found');
 	        return;
 	    }
+
 	    console.log(o);
+
 	    $('#modalPage').modal('show');
-	    $('#modalPage .modal-title').text(o.name);
+	    $('#modalPage .modal-title').text('Loading #'+o.id);
 	    $('#page_id').val(o.id);
 	    $('button#btnUpdate').attr('disabled',false);
-
+		$('#btnDelete').attr('disabled',false).focus();
 	    $('.overlay').show();
+
 		$.post('ctrl.php', {'do':'get',id:o.id}, (json)=>{
 			$('.overlay').hide();
 			//console.log('load',json.data.b64);
-
+			$('#modalPage .modal-title').text(json.data.name);
 			let data=atob(json.data.b64);
 			console.log(data);
-			//emulator.send(data);
+			emulator = Minitel.startEmulators()[0];
 			for(let i in data){
-				let chr=data[i];
-				emulator.send(chr.charCodeAt());
+				emulator.send(data[i].charCodeAt());
 			}
 
 		}).fail((e)=>{
@@ -137,7 +142,7 @@ $(function(){
 		};
 
 		$('.overlay').show();
-		$('#modalNewPage .modal-title').text('Please wait');
+		$('#modalNewPage .modal-title').text('Please wait...');
 		$('button#btnCreate').attr('disabled', true);
 		$.post('ctrl.php', p, (json)=>{
 			$('.overlay').hide();
@@ -162,11 +167,13 @@ $(function(){
 		if(!confirm("Confirm delete page #"+id+" ?"))return;
 
 		let p={
-		    'do':'delete',
+		    do:'delete',
 		    id:id
 		};
 
 		$('.overlay').show();
+		$('#btnDelete').attr('disabled','disabled');
+		$('#modalPage .modal-title').text('Please wait');
 		$.post('ctrl.php', p, (json)=>{
 			$('.overlay').hide();
 			console.log(json);

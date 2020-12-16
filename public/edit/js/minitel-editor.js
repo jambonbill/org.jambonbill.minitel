@@ -69,9 +69,12 @@ $(function(){
             name: "Open script",
             bindKey: {win: "Ctrl-o", mac: "Command-o"},
             exec: function(editor) {
+                return false;
+                /*
                 scriptSelector((scriptId)=>{
                     loadScript(scriptId);
                 });
+                */
             }
         });
 
@@ -130,6 +133,7 @@ $(function(){
         $.post('ctrl.php', p, (json)=>{
             $('.overlay').hide();
             console.log(json);
+            $('#script_name').text(json.r.name);
             if(json.r.data){
                 editor.getSession().setValue(json.r.data);
             }else{
@@ -170,6 +174,7 @@ $(function(){
     function runScript(){
         console.log('runScript()');
         var data=editor.getSession().getValue();
+        $('#editor').css('background-color', '#000000');
         try{
             eval("let _x="+data+";if(typeof(_x)=='function');_x(emulator);");//i hope i'm not going to hell for this
             //eval(data);
@@ -177,6 +182,7 @@ $(function(){
         catch(e){
             console.error("scriptRun error", e);
             //console.log(e.name,e.message);
+            $('#editor').css('background-color','#0000cc');
         }
     }
 
@@ -190,7 +196,7 @@ $(function(){
      * @return {[type]} [description]
      */
     function newScript(){
-        editor.getSession().setValue('(minitel)=>{\n\n\tlet ms=miniscript();\n\n\tminitel.send(ms.data);\n};');
+        editor.getSession().setValue('(m)=>{\n\n\tlet ms=miniscript();\n\n\tm.send(ms.data);\n};');
     }
 
 

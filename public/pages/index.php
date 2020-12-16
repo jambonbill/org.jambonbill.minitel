@@ -16,6 +16,7 @@ if (!$B->userId()) {
 //$USR=$B->user();
 
 $admin = new LTE\Admin();
+$admin->addJs("js/pages.js");
 echo $admin;//
 //print_r($usr);
 ?>
@@ -45,9 +46,6 @@ echo $admin;//
 
 	</section>
 </div>
-
-<script type="text/javascript" src="/js/minitel.min.js"></script>
-<script type="text/javascript" src="js/pages.js"></script>
 
 <?php
 require "modal_page.php";

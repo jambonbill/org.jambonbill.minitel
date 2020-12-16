@@ -12,15 +12,26 @@ if (!$B->userId()) {
 }
 
 
-$admin = new LTE\Admin();
+$admin = new LTE\Admin;
+$admin->title("Edit");
+$admin->addJs("js/minitel-editor.js");
+$admin->addJs("/dist/miniscript/miniscript.js");
+
+//<!-- ace editor -->
+$admin->addJs("ace/ace.js");
+$admin->addJs("ace/ext-language_tools.js");
+$admin->addJs("ace/theme-twilight.js");
+$admin->addJs("ace/mode-javascript.js");
+$admin->addJs("ace/mode-javascript.js");
+
+
+$admin->addCss("css/minitel-editor.css");
 echo $admin->head();//
-echo '<link href="css/minitel-editor.css" rel="stylesheet" type="text/css" />';
 
 if (isset($_GET['id'])) {
   echo '<input type=hidden id=script_id value="'.$_GET['id'].'">';
 }
 require "navbar.html";
-
 ?>
 
   <div id="editor"></div>
@@ -35,14 +46,5 @@ require "navbar.html";
     </x-minitel>
   </div>
 
-  <script src="/js/minitel.min.js"></script>
-
-  <!-- ace editor -->
-  <script type="text/javascript" src="ace/ace.js" charset="utf-8"></script>
-  <script type="text/javascript" src="ace/ext-language_tools.js"></script>
-  <script type="text/javascript" src="ace/theme-twilight.js" charset="utf-8"></script>
-  <script type="text/javascript" src="ace/mode-javascript.js"  charset="utf-8"></script>
-
-
-  <script src="js/minitel-editor.js"></script>
-
+<?php
+$admin->end();

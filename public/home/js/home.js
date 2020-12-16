@@ -11,7 +11,7 @@ $(function(){
 	    console.info('get');
 
 	    let p={
-	    	do:'get'
+	    	do:'list'
 	    };
 
 	    $('.overlay').show();
@@ -56,7 +56,7 @@ $(function(){
 	        htm+='<td><i class="text-muted">'+o.id+'</i>';
 	        htm+='<td>'+o.name;
 	        htm+='<td class="text-right">';
-	        htm+='<i class="text-muted">0</i>';
+	        htm+='<i class="text-muted">'+o.size+'</i>';
 	        num++;
 	    }
 	    htm+='</tbody>';
@@ -91,6 +91,29 @@ $(function(){
 	    $('#modalScript .modal-title').text(o.name);
 	    $('#script_id').val(o.id);
 	    $('button#btnEdit').focus();
+	    let p={
+	        'do':'load',
+	        id:id
+	    };
+	    $('.overlay').show();
+	    $.post('ctrl.php', p, (json)=>{
+	    	$('.overlay').hide();
+	    	console.log(json);
+	    	if(json.r){
+	    		try{
+	    			//eval(json.r.data);
+	    			eval("let _x="+json.r.data+";if(typeof(_x)=='function');_x(emulator);");
+	    		}
+	    		catch(err){
+	    			console.error(err);
+	    		}
+	    	}
+	    }).fail((e)=>{
+	    	alert(e.responseText);
+	    	console.error(e.responseText);
+	    }).always(()=>{
+	    	$('.overlay').hide();
+	    });
 	}
 
 

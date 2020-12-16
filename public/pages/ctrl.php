@@ -5,9 +5,9 @@
 
 header('Content-Type: application/json');
 session_start();
+//sleep(2);
 
 require __DIR__."/../../vendor/autoload.php";
-
 $B=new Djang\Base();
 $B->ctrl();//check a few things
 

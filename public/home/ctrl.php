@@ -18,7 +18,6 @@ $dat=[];
 $dat['POST']=$_POST;
 switch($_POST['do']){
 
-    case 'get':
     case 'list':
         $dat['scripts']=$Script->list();
         exit(json_encode($dat));
@@ -29,6 +28,10 @@ switch($_POST['do']){
 
     case 'delete':
         $dat['deleted']=$Script->delete($_POST['id']);
+        exit(json_encode($dat));
+
+    case 'load':
+        $dat['r']=$Script->get($_POST['id']);
         exit(json_encode($dat));
 
     default:

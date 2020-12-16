@@ -6,7 +6,7 @@ $htm ='<div class="row">';
 $htm.='<input type=hidden id=script_id>';
 
 $htm.='<div class="col-12">';
-$htm.='<x-minitel data-speed="1200" data-color="true">';
+$htm.='<x-minitel data-speed="0" data-color="true">';
   $htm.='<canvas class="minitel-screen" id=screen data-minitel="screen"></canvas>';
 $htm.='</x-minitel>';
 $htm.='</div>';

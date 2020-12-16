@@ -19,7 +19,7 @@
     "require": {
     	"php": ">=7.0.0",
         "ext-pdo":"*",
-        "jambonbill/lteturbo": ">=1.5.0",
+        "jambonbill/lteturbo": ">=1.5.2",
         "jambonbill/djang": ">=1.1.2"
     }
 }

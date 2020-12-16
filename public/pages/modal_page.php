@@ -23,6 +23,7 @@ $htm.='</form>';
 $modal=new LTE\Modal;
 $modal->id('modalPage');
 $modal->title('Minitel page');
+$modal->size('lg');
 $modal->body($htm);
 
 $btns='';
