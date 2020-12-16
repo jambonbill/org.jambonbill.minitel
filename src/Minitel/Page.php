@@ -50,11 +50,12 @@ class Page
      */
     public function list()
     {
-        $sql="SELECT id, name FROM `minitel`.`page` WHERE id>0;";
+        $sql="SELECT id, name, LENGTH(data) AS size FROM `minitel`.`page` WHERE id>0;";
         $q=$this->db()->query($sql) or die(print_r($this->db()->errorInfo(), true) . "<hr />$sql");
 
         $dat=[];
         while($r=$q->fetch(PDO::FETCH_ASSOC)){
+            $r['size']*=1;
             $dat[]=$r;
         }
         return $dat;
