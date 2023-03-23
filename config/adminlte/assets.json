@@ -2,16 +2,17 @@
 	"css":[
 		"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
     	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css",
-    	"/dist/css/adminlte.min.css"
+    	"https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css"
 	],
+	
 	"js":[
 	    "https://code.jquery.com/jquery-3.2.1.min.js",
-	    "/dist/plugins/jQuery/jquery-tablesorter.min.js",
+	    "https://cdn.jsdelivr.net/npm/tablesorter@2.31.3/dist/js/jquery.tablesorter.combined.min.js",
 	    "/dist/plugins/slimScroll/jquery.slimscroll.min.js",
 	    "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js",
     	"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js",
-    	"/js/minitel.min.js",
-    	"/dist/miniscript/miniscript.js",
-    	"/dist/js/adminlte.js"
+    	"/dist/js/minitel.min.js",
+    	"/dist/js/miniscript.js",
+    	"https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.min.js"
 	]
 }
