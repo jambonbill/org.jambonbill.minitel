@@ -17,7 +17,7 @@ echo $admin->head();
   <div class="card">
     <div class="card-body login-card-body">
       <div class="login-logo d-none d-sm-block">
-        <img src="/dist/img/jambonbill.png">
+        <img src="/dist/img/minitel.png">
       </div>
 
       <form action="login.php" method="post" autocomplete="off">
